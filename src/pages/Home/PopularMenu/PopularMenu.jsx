@@ -1,18 +1,10 @@
-import { useEffect, useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
-import axios from 'axios';
 import MenuItem from '../../Shared/MenuItem/MenuItem';
+import useMenu from '../../../hooks/useMenu';
 
 const PopularMenu = () => {
-  const [menu, setMenu] = useState([]);
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios(`./menu.json`);
-      const popularItems = data.filter((item) => item.category === 'popular');
-      setMenu(popularItems);
-    };
-    getData();
-  }, []);
+  const [menu] = useMenu();
+  const popular = menu.filter((item) => item.category === 'popular');
   return (
     <div>
       <SectionTitle
@@ -20,7 +12,7 @@ const PopularMenu = () => {
         heading={'FROM OUR MENU'}
       ></SectionTitle>
       <div className='grid  gap-4 container mx-auto my-8 grid-cols-1 md:grid-cols-2'>
-        {menu.map((item) => (
+        {popular.map((item) => (
           <MenuItem key={item._id} item={item}></MenuItem>
         ))}
       </div>
