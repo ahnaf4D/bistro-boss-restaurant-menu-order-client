@@ -12,7 +12,6 @@ import SoupBg from '../../../assets/menu/soup-bg.jpg';
 const Menu = () => {
   const [menu] = useMenu();
   const todayOffers = menu.filter((item) => item.category === 'offered');
-  //   console.log(todayOffers);
   const desserts = menu.filter((item) => item.category === 'dessert');
   const pizzas = menu.filter((item) => item.category === 'pizza');
   const salads = menu.filter((item) => item.category === 'salad');
